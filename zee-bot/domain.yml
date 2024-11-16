@@ -1,0 +1,311 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- seek_options
+- seek_zoom
+- fill_id_info
+- seek_exam_syllabus
+- seek_school_vid
+- affirm
+- bot_challenge
+- stop
+- goodbye
+- deny
+- mood_great
+- mood_unhappy
+- seek_school_location
+- seek_exam_timetable
+- seek_COVIDinfo
+- seek_fees
+- seek_admission_details
+- seek_academic_calendar
+- enter_month
+- seek_uniform
+- seek_holiday
+- seek_report_card
+- seek_events
+- seek_timetable
+- chitchat
+- seek_contact_school
+- seek_contact_teachers
+- reset_id
+- seek_school_timings
+entities:
+- class
+- exam
+- hol
+- idno
+- month
+- subject1
+- uniform
+- event
+slots:
+  idno:
+    type: any
+    influence_conversation: false
+  class:
+    type: any
+    influence_conversation: false
+  exam:
+    type: any
+    influence_conversation: false
+  subject1:
+    type: any
+    influence_conversation: false
+  month:
+    type: any
+    influence_conversation: false
+  uniform:
+    type: any
+    influence_conversation: false
+  hol:
+    type: any
+    influence_conversation: false
+  event:
+    type: any
+    influence_conversation: false
+responses:
+  utter_show_options:
+  - buttons:
+    - payload: /fill_id_info
+      title: Enter ID (login)
+    - payload: /reset_id
+      title: Reset ID
+    - payload: /seek_zoom
+      title: Zoom IDs
+    - payload: /seek_timetable
+      title: Timetable
+    - payload: /seek_school_timings
+      title: School Timings
+    - payload: /seek_report_card
+      title: Report Card
+    - payload: /seek_contact_school
+      title: School Contact Info
+    - payload: /seek_contact_teachers
+      title: Teachers' Gmail Info
+    - payload: /seek_exam_syllabus
+      title: Exam Syllabus
+    - payload: /seek_exam_timetable
+      title: Exam Timetable 2020-21
+    - payload: /seek_academic_calendar
+      title: Academic Calendar 2020-21
+    - payload: /seek_events
+      title: Events    
+    - payload: /seek_holiday
+      title: Holidays
+    - payload: /seek_admission_details
+      title: Admission Details
+    - payload: /seek_fees
+      title: Fee Structure
+    - payload: /seek_school_location
+      title: School Location
+    - payload: /seek_uniform
+      title: School Uniform
+    - payload: /seek_school_vid
+      title: School Video
+    - payload: /seek_COVIDinfo
+      title: COVID-19 info
+    text: What can i do for you today?
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_whatelse:
+  - text: What else can i help you with?
+  utter_req:
+  - text: This feature required authentication. Please enter your ID number if not already filled.
+  utter_ask_stop:
+  - buttons:
+    - payload: /affirm
+      title: Yes
+    - payload: /deny
+      title: No
+    text: Are you sure you want to continue without this?
+  utter_ask_idno:
+  - text: Please enter your ID number.
+  utter_id_success:
+  - text: Success! Your id number is {idno}
+  utter_school_location:
+  - image: https://i.imgur.com/RD2e0JC.jpeg
+    text: The xyz international school is situated on street 1800.
+  utter_ask_class:
+  - text: Please enter your class and section.
+  utter_ask_exam:
+  - buttons:
+    - payload: /seek_exam_syllabus{{"exam":"periodic"}}
+      title: Periodic Test
+    - payload: /seek_exam_syllabus{{"exam":"half yearly"}}
+      title: Half Yearly
+    - payload: /seek_exam_syllabus{{"exam":"preboard"}}
+      title: Preboard
+    - payload: /seek_exam_syllabus{{"exam":"final"}}
+      title: Final Exam
+    text: Kindly select exam.
+  utter_ask_subject1:
+  - buttons:
+    - payload: /seek_exam_syllabus{{"subject1":"maths"}}
+      title: Mathematics
+    - payload: /seek_exam_syllabus{{"subject1":"phy"}}
+      title: Physics
+    - payload: /seek_exam_syllabus{{"subject1":"chem"}}
+      title: Chemistry
+    - payload: /seek_exam_syllabus{{"subject1":"eng"}}
+      title: English
+    - payload: /seek_exam_syllabus{{"subject1":"cs"}}
+      title: Computer Science
+    text: Kindly select subject.
+  utter_exam_timetable:
+  - image: https://i.imgur.com/xOQ9o2v.png
+    text: Here's the exam date sheet for the academic year 2021-22.
+  utter_show_fees:
+  - image: https://i.imgur.com/rL2nqKT.jpeg
+    text: Here is the fee structure.
+  utter_show_admission_details:
+  - image: https://i.imgur.com/St2zKEC.jpg
+    text: Here are some details regarding admissions.
+  utter_ask_month:
+  - buttons:
+    - payload: /seek_academic_calendar{{"month":"September"}}
+      title: September 2021
+    - payload: /seek_academic_calendar{{"month":"October"}}
+      title: October 2021
+    - payload: /seek_academic_calendar{{"month":"November"}}
+      title: November 2021
+    - payload: /seek_academic_calendar{{"month":"December"}}
+      title: December 2021
+    - payload: /seek_academic_calendar{{"month":"January"}}
+      title: January 2022
+    - payload: /seek_academic_calendar{{"month":"February"}}
+      title: February 2022
+    - payload: /seek_academic_calendar{{"month":"March"}}
+      title: March 2022
+    - payload: /seek_academic_calendar{{"month":"April"}}
+      title: April 2022
+    - payload: /seek_academic_calendar{{"month":"May"}}
+      title: May 2022
+    - payload: /seek_academic_calendar{{"month":"June"}}
+      title: June 2022
+    - payload: /seek_academic_calendar{{"month":"July"}}
+      title: July 2022
+    - payload: /seek_academic_calendar{{"month":"August"}}
+      title: August 2022
+    text: Which month's schedule would you like to see?
+  utter_ask_uniform:
+  - buttons:
+    - payload: /seek_uniform{{"uniform":"senior"}}
+      title: Senior section (6 to 12)
+    - payload: /seek_uniform{{"uniform":"junior"}}
+      title: Junior section (KGII to 5)
+    text: Which uniform would you like to see
+  utter_ask_hol:
+  - buttons:
+    - payload: /seek_holiday{{"hol":"summer"}}
+      title: Summer Vacation
+    - payload: /seek_holiday{{"hol":"winter"}}
+      title: Winter Vacation
+    - payload: /seek_holiday{{"hol":"other"}}
+      title: Other holidays
+    text: Which break schedule would you like to see?
+  utter_ask_event:
+  - buttons:
+    - payload: /seek_events{{"event":"mun"}}
+      title: MUN
+    - payload: /seek_events{{"event":"fest"}}
+      title: FEST
+    - payload: /seek_events{{"event":"quiz"}}
+      title: QUIZ
+    - payload: /seek_events{{"event":"art"}}
+      title: ART
+    text: Which event's details would you like to see?
+  utter_contact_school:
+  - image: https://i.imgur.com/MaThkes.jpg
+    text: You can contact us through the Email as well as by calling us!
+  utter_school_timings:
+  - image: https://i.imgur.com/cxTuYFQ.jpg
+    text: "Here are the school timings."
+actions:
+- action_show_COVIDinfo
+- action_show_academic_calendar
+- action_show_exam_syllabus
+- action_show_holiday
+- action_show_school_vid
+- action_show_uniform
+- action_show_zoom
+- utter_ask_stop
+- utter_greet
+- utter_iamabot
+- utter_show_options
+- utter_whatelse
+- validate_id_form
+- action_show_report_card
+- action_show_events
+- action_show_timetable
+- action_reset_id
+- action_show_teachers_contact
+forms:
+  id_form:
+    required_slots:
+      idno:
+      - entity: idno
+        type: from_entity
+  exam_form:
+    required_slots:
+      class:
+      - entity: class
+        type: from_entity
+      exam:
+      - entity: exam
+        type: from_entity
+      subject1:
+      - entity: subject1
+        type: from_entity
+  academic_calendar_form:
+    required_slots:
+      month:
+      - entity: month
+        type: from_entity
+  uniform_form:
+    required_slots:
+      uniform:
+      - entity: uniform
+        type: from_entity
+  holiday_form:
+    required_slots:
+      hol:
+      - entity: hol
+        type: from_entity
+  # zoom_form:
+  #   required_slots:
+  #     idno:
+  #     - entity: idno
+  #       type: from_entity
+  #     class:
+  #     - entity: class
+  #       type: from_entity
+  events_form:
+    required_slots:
+      event:
+      - entity: event
+        type: from_entity
+  timetable_form:
+    required_slots:
+      class:
+      - entity: class # change this to class in github code
+        type: from_entity
+  contact_teachers_form:
+    required_slots:
+      class:
+      - entity: class
+        type: from_entity

@@ -1,0 +1,205 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+# ID STORIES
+- story: interactive_story_1 (ID FORM 1)
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: fill_id_info
+  - action: id_form
+  - active_loop: id_form
+  - slot_was_set:
+    - requested_slot: idno
+  - slot_was_set:
+    - idno: '13493'
+  - slot_was_set:
+    - idno: '13493'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_show_options
+
+- story: User doesn't want to fill form (ID FORM 2)
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: fill_id_info
+  - action: id_form
+  - active_loop: id_form
+  - intent: stop
+  - action: utter_ask_stop
+  - or:
+    - intent: stop
+    - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_show_options
+
+- story: ID FORM 3
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: fill_id_info
+  - action: id_form
+  - active_loop: id_form
+  - slot_was_set:
+    - requested_slot: idno
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: id_form
+  - slot_was_set:
+    - requested_slot: idno
+  - intent: stop
+  - action: utter_ask_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+    - idno: null
+  - action: utter_show_options
+
+# SCHOOL VIDEO
+- story: school video
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_school_vid
+  - action: action_show_school_vid
+  - action: utter_show_options
+
+# SCHOOL LOCATION
+- story: school location
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_school_location
+  - action: utter_school_location
+  - action: utter_show_options
+
+# EXAM SYLLABUS
+- story: Exam Syllabus Changed Mind
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_exam_syllabus
+  - action: exam_form
+  - active_loop: exam_form
+  - slot_was_set:
+    - requested_slot: class
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: exam_form
+  - slot_was_set:
+    - requested_slot: class
+  - intent: stop
+  - action: utter_ask_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+    - class: null
+  - action: utter_show_options
+# EXAM TIMETABLE
+- story: exam timetable
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_exam_timetable
+  - action: utter_exam_timetable
+  - action: utter_show_options
+# OPTIONS
+- story: display options
+  steps:
+  - intent: greet
+  - action: utter_show_options
+
+# EXAM SYLLABUS
+- story: exam syllabus path 1
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_exam_syllabus
+  - action: exam_form
+  - active_loop: exam_form
+  - slot_was_set:
+    - requested_slot: class
+  - slot_was_set:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - slot_was_set:
+    - requested_slot: exam
+  - slot_was_set:
+    - exam: periodic
+  - slot_was_set:
+    - exam: periodic
+  - slot_was_set:
+    - requested_slot: subject1
+  - slot_was_set:
+    - subject1: maths
+  - slot_was_set:
+    - subject1: maths
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_exam_syllabus
+  - action: utter_show_options
+  - intent: fill_id_info
+  - action: id_form
+  - active_loop: id_form
+  - slot_was_set:
+    - requested_slot: idno
+
+# ZOOM 
+- story: zoom path 1
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_zoom
+  - action: action_show_zoom
+  - slot_was_set:
+    - idno: None
+  - action: utter_show_options
+  
+
+# REPORT CARD
+- story: report card path 1
+  steps:
+  - intent: greet
+  - action: utter_show_options
+  - intent: seek_report_card
+  - action: action_show_report_card
+  - slot_was_set:
+    - idno: None
+  - action: utter_show_options
