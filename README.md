@@ -1,4 +1,4 @@
-# ZEE-BOT-STAI-CHATBOT
+# ZEE-BOT-CHATBOT
 
 This is a web based chatbot featuring voice commands 
 To run the bot, you need to install **Rasa 2.0** in a **virtual environment**
